@@ -2,17 +2,6 @@ const notes = require('express').Router();
 const fs = require('fs');
 const { v4: uuid } = require('uuid');
 
-// GET Route for for a new notes
-notes.get('/notes', (req, res) => {
-    fs.readFile("db/db.json", (err, data) => {
-        if (err) {
-            console.error(err)
-        }
-        res.json(JSON.parse(data))
-    })
-}
-)
-
 
 //POST Route for a new note
 notes.post('/notes', async (req, res) => {
@@ -59,6 +48,18 @@ notes.delete(`/notes/:id`, (req, res) => {
         }
     })
 })
+
+
+// GET Route for for a new notes
+notes.get('/notes', (req, res) => {
+    fs.readFile("db/db.json", (err, data) => {
+        if (err) {
+            console.error(err)
+        }
+        res.json(JSON.parse(data))
+    })
+}
+)
 
 
 module.exports = notes;
